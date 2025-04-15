@@ -1,13 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>대한민국 구석구석 클론코딩 사이트</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="index.css" />
+    <style>
+      .transition-max-height {
+        transition: max-height 0.3s ease-in-out;
+      }
+    </style>
   </head>
-  <body>
-    <img src="/img/logo.png" class="w-[20.7rem] h-[3.8rem]" />
+  <body class="relative bg-white">
+    <!-- NavBar -->
+    <div class="group relative z-50 bg-white fixed top-0 left-0 w-full shadow">
+      <!-- Main Navbar -->
+      <div class="flex w-full h-[6rem] items-center justify-between px-[1rem]">
+        <a href="index.html">
+          <img src="/img/navBar/logo.png" class="w-[15.7rem] h-[3.5rem]" />
+        </a>
+        <ul class="text-lg font-bold flex gap-[3rem]">
+          <li>홈</li>
+          <li>테마</li>
+          <li>지역</li>
+          <li>여행코스</li>
+          <li class="relative">여행정보</li>
+          <li>여행혜택</li>
+        </ul>
+        <img src="/img/navBar/icons.png" class="w-[12.2rem] h-[3.2rem]" />
+      </div>
+
+      <!-- Dropdown NavBar -->
+      <div
+        class="absolute left-0 top-full w-full max-h-0 overflow-hidden transition-max-height duration-300 ease-in-out group-hover:max-h-[400px] bg-gray-100"
+      >
+        <div
+          class="flex justify-center gap-[2rem] py-8 text-gray-700 pl-[18rem]"
+        >
+          <ul class="space-y-2 text-base font-medium">
+            <li>추천코스</li>
+            <li>AI콕콕 플래너</li>
+          </ul>
+          <ul class="space-y-2 text-base font-medium">
+            <li>여행지</li>
+            <li>여행기사</li>
+            <li>축제</li>
+            <li>공연 / 행사</li>
+            <li>AI콕콕</li>
+            <li>여행상품</li>
+          </ul>
+          <ul class="space-y-2 text-base font-medium">
+            <li>이벤트</li>
+            <li>가볼래-터</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 본문 -->
+    <div class="pt-[6rem] p-8">
+      <h1 class="text-2xl font-bold">안녕하세요</h1>
+      <p>본문 영역입니다. 드롭다운이 겹쳐서 표시되며 밀리지 않습니다.</p>
+    </div>
   </body>
 </html>
