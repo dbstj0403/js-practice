@@ -1,4 +1,4 @@
-const sampleData = [
+const festivalData = [
   {
     title: "태안봄꽃정원",
     space: "충남 태안군",
@@ -18,20 +18,6 @@ const sampleData = [
     space: "대전 서구",
     startTime: "2025-04-22",
     endTime: "2025-04-25",
-    address: "충청남도 태안군 남면 마검포길 200",
-  },
-  {
-    title: "태안봄꽃정원",
-    space: "충남 태안군",
-    startTime: "2025-04-03",
-    endTime: "2025-06-30",
-    address: "충청남도 태안군 남면 마검포길 200",
-  },
-  {
-    title: "태안봄꽃정원",
-    space: "충남 태안군",
-    startTime: "2025-04-03",
-    endTime: "2025-06-30",
     address: "충청남도 태안군 남면 마검포길 200",
   },
 ];

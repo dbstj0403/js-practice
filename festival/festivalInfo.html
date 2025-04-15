@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>대한민국 구석구석 클론코딩 사이트</title>
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="../index.css" />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
@@ -24,7 +24,9 @@
             <li>홈</li>
             <li>테마</li>
             <li>
-              <a href="/festivalInfo.html" class="cursor-pointer">지역</a>
+              <a href="/festival/festivalInfo.html" class="cursor-pointer"
+                >지역</a
+              >
             </li>
             <li>여행코스</li>
             <li>여행정보</li>
@@ -63,8 +65,31 @@
 
     <!-- Festival Information -->
     <div class="w-full items-center p-[3rem]">
-      <h1 class="text-2xl"><strong>전국</strong> 축제∙행사 어디까지 가봤니?</h1>
+      <h1 class="text-2xl mb-[2rem] ml-[5rem]">
+        <strong>전국</strong> 축제∙행사 어디까지 가봤니?
+      </h1>
+      <div class="flex items-center justify-center mb-[1rem]">
+        <span id="monthDisplay" class="text-xl font-semibold"></span>
+      </div>
+
+      <div class="flex items-center justify-center gap-6 mb-4">
+        <!-- 달력 본체 -->
+        <button
+          id="prev"
+          class="text-2xl font-bold px-3 py-1 hover:text-blue-500"
+        >
+          ←
+        </button>
+
+        <div id="calendar" class="flex justify-center gap-3 flex-wrap"></div>
+        <button
+          id="next"
+          class="text-2xl font-bold px-3 py-1 hover:text-blue-500"
+        >
+          →
+        </button>
+      </div>
     </div>
   </body>
-  <script src="/festivalInfo.js"></script>
+  <script src="festivalInfo.js"></script>
 </html>
