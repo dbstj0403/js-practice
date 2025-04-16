@@ -9,55 +9,14 @@
   </head>
   <body class="relative bg-white">
     <!-- NavBar -->
-    <nav>
-      <div
-        class="group relative z-50 bg-white fixed top-0 left-0 w-full shadow"
-      >
-        <!-- Main Navbar -->
-        <div
-          class="flex w-full h-[6rem] items-center justify-between px-[1rem]"
-        >
-          <a href="index.html">
-            <img src="/img/navBar/logo.png" class="w-[15.7rem] h-[3.5rem]" />
-          </a>
-          <ul class="text-lg font-bold flex gap-[3rem]">
-            <li>홈</li>
-            <li>테마</li>
-            <li>지역</li>
-            <li>여행코스</li>
-            <li>여행정보</li>
-            <li>여행혜택</li>
-          </ul>
-          <img src="/img/navBar/icons.png" class="w-[12.2rem] h-[3.2rem]" />
-        </div>
-
-        <!-- Dropdown NavBar -->
-        <div
-          class="absolute left-0 top-full w-full max-h-0 overflow-hidden transition-max-height duration-300 ease-in-out group-hover:max-h-[400px] bg-gray-100"
-        >
-          <div
-            class="flex justify-center gap-[2rem] py-8 text-gray-700 pl-[18rem]"
-          >
-            <ul class="space-y-2 text-base font-medium">
-              <li>추천코스</li>
-              <li>AI콕콕 플래너</li>
-            </ul>
-            <ul class="space-y-2 text-base font-medium">
-              <li>여행지</li>
-              <li>여행기사</li>
-              <li>축제</li>
-              <li>공연 / 행사</li>
-              <li>AI콕콕</li>
-              <li>여행상품</li>
-            </ul>
-            <ul class="space-y-2 text-base font-medium">
-              <li>이벤트</li>
-              <li>가볼래-터</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </nav>
+    <script>
+      fetch("/layouts/navBar.html")
+        .then((res) => res.text())
+        .then((data) => {
+          document.getElementById("navBarContainer").innerHTML = data;
+        });
+    </script>
+    <div id="navBarContainer"></div>
 
     <!-- 본문 -->
     <div class="pt-[6rem] p-8">
@@ -68,17 +27,17 @@
     <div id="footer-container"></div>
 
     <script>
-      //footer.html을 불러와서 삽입
-      fetch("footer.html")
-      .then((res) => res.text())
-      .then((data) => {
-        document.getElementById("footer-container").innerHTML = data;
-      
-      //footer.js파일 불러오기
-        const script = document.createElement('script');
-        script.src = 'footer.js';
-        document.body.appendChild(script);
-      });
+      // footer.html을 불러와서 삽입
+      fetch("/layouts/footer.html")
+        .then((res) => res.text())
+        .then((data) => {
+          document.getElementById("footer-container").innerHTML = data;
+
+          // footer.js파일 불러오기
+          const script = document.createElement("script");
+          script.src = "/layouts/footer.js";
+          document.body.appendChild(script);
+        });
     </script>
   </body>
 </html>

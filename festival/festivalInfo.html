@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>대한민국 구석구석 클론코딩 사이트</title>
+    <link rel="stylesheet" href="../index.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* 스크롤바 제거용 (모든 브라우저 호환) */
+      #festivalList::-webkit-scrollbar {
+        display: none;
+      }
+      #festivalList {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NavBar -->
+    <script>
+      fetch("/layouts/navBar.html")
+        .then((res) => res.text())
+        .then((data) => {
+          document.getElementById("navBarContainer").innerHTML = data;
+        });
+    </script>
+    <div id="navBarContainer"></div>
+
+    <!-- Festival Info -->
+    <div class="w-full items-center">
+      <h1 class="text-2xl mb-[2rem] ml-[5rem] p-[3rem]">
+        <strong>전국</strong> 축제∙행사 어디까지 가봤니?
+      </h1>
+
+      <div class="flex items-center justify-center mb-4">
+        <span id="display" class="text-xl font-semibold"></span>
+      </div>
+
+      <div class="flex items-center justify-center gap-6 mb-4">
+        <button
+          id="prev"
+          class="text-2xl font-bold px-3 py-1 hover:text-blue-500"
+        >
+          ←
+        </button>
+        <div id="calendar" class="flex justify-center gap-3 flex-wrap"></div>
+        <button
+          id="next"
+          class="text-2xl font-bold px-3 py-1 hover:text-blue-500"
+        >
+          →
+        </button>
+      </div>
+
+      <!-- Festival Card  -->
+      <div
+        id="festivalList"
+        class="flex snap-x snap-mandatory overflow-x-auto scroll-smooth bg-gray-200 mt-6 w-full min-h-[20rem] px-8 py-4 gap-[2rem] items-center mb-[5rem]"
+      ></div>
+    </div>
+
+    <div id="footer-container"></div>
+    <script>
+      // footer.html을 불러와서 삽입
+      fetch("/layouts/footer.html")
+        .then((res) => res.text())
+        .then((data) => {
+          document.getElementById("footer-container").innerHTML = data;
+
+          // footer.js파일 불러오기
+          const script = document.createElement("script");
+          script.src = "/layouts/footer.js";
+          document.body.appendChild(script);
+        });
+    </script>
+    <script type="module" src="festivalInfo.js"></script>
+  </body>
+</html>
