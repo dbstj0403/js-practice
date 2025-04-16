@@ -64,5 +64,21 @@
       <h1 class="text-2xl font-bold">안녕하세요</h1>
       <p>본문 영역입니다. 드롭다운이 겹쳐서 표시되며 밀리지 않습니다.</p>
     </div>
+
+    <div id="footer-container"></div>
+
+    <script>
+      //footer.html을 불러와서 삽입
+      fetch("footer.html")
+      .then((res) => res.text())
+      .then((data) => {
+        document.getElementById("footer-container").innerHTML = data;
+      
+      //footer.js파일 불러오기
+        const script = document.createElement('script');
+        script.src = 'footer.js';
+        document.body.appendChild(script);
+      });
+    </script>
   </body>
 </html>
