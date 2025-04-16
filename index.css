@@ -27,3 +27,12 @@ html {
 .scrollbar-hide::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
+
+#festivalList::-webkit-scrollbar {
+  display: none;
+}
+
+#festivalList {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
