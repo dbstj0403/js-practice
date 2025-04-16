@@ -24,11 +24,14 @@ const renderFestivalList = (selected) => {
   festivalList.innerHTML = events
     .map(
       (event) => `
-          <div class="py-3 w-[15rem] h-[5rem]">
-            <h3 class="text-lg font-semibold">${event.title}</h3>
-            <p class="text-sm text-gray-700">장소: ${event.space}</p>
-            <p class="text-sm text-gray-700">기간: ${event.startTime.toLocaleDateString()} ~ ${event.endTime.toLocaleDateString()}</p>
-            <p class="text-sm text-gray-700">주소: ${event.address}</p>
+          <div class="py-3 w-[30rem] h-[18rem] bg-white rounded-lg flex justify-center items-center flex-shrink-0">
+            <img src=${event.img} class="w-[7rem] h-[10rem] rounded-md"/>
+            <div class="flex flex-col gap-y-5 ml-[1rem]">
+              <h3 class="text-lg font-semibold">${event.title}</h3>
+              <p class="text-sm text-gray-700">장소: ${event.space}</p>
+              <p class="text-sm text-gray-700">기간: ${event.startTime.toLocaleDateString()} ~ ${event.endTime.toLocaleDateString()}</p>
+              <p class="text-sm text-gray-700">주소: ${event.address}</p>
+            </div>
           </div>
         `
     )

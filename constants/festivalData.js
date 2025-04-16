@@ -1,6 +1,7 @@
 export const festivalData = [
   {
     title: "태안봄꽃정원",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZ4qC7pVZ__ILi8OmGzuccNIWZk00WYHkVHA&s",
     space: "충남 태안군",
     startTime: new Date("2025-04-03"),
     endTime: new Date("2025-06-30"),
@@ -8,6 +9,7 @@ export const festivalData = [
   },
   {
     title: "부산국제매직페스티벌",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAfS_lnpreFMjyQZ4DNUzOHAaIDGddBbiwqw&s",
     space: "부산 동구",
     startTime: new Date("2025-04-20"),
     endTime: new Date("2025-04-23"),
@@ -15,6 +17,7 @@ export const festivalData = [
   },
   {
     title: "대전시립연정국악단 토요국악",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTg-BC6eSdRohLqYXGKO87BY5rrI4w__PhUmA&s",
     space: "대전 서구",
     startTime: new Date("2025-04-22"),
     endTime: new Date("2025-04-25"),
@@ -22,6 +25,7 @@ export const festivalData = [
   },
   {
     title: "용인 자작나무숲 봄꽃축제",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp7feQtRp-PYicw5_s8p3twwqErRM83t8rxA&s",
     space: "경기 용인시",
     startTime: new Date("2025-04-02"),
     endTime: new Date("2025-06-09"),
@@ -29,6 +33,7 @@ export const festivalData = [
   },
   {
     title: "서울봄꽃축제",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtsmg7GHLWpuLbGflr1nFnoLAF2S9-BoD9Cg&s",
     space: "서울 중구",
     startTime: new Date("2025-04-10"),
     endTime: new Date("2025-04-20"),
