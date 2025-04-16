@@ -8,7 +8,7 @@
   <tr>
     <td align="center">
       <a href="https://github.com/dbstj0403">
-        <img src="https://github.com/dbstj0403.png" width="100" /><br />
+        <img src="https://github.com/dbstj0403.png" width="200" /><br />
         원윤서<br />
         <sub>@dbstj0403</sub>
       </a>
@@ -17,7 +17,7 @@
     </td>
     <td align="center">
       <a href="https://github.com/jaehejun">
-        <img src="https://github.com/jaehejun.png" width="100" /><br />
+        <img src="https://github.com/jaehejun.png" width="200" /><br />
         정재희<br />
         <sub>@jaehejun</sub>
       </a>
@@ -49,3 +49,28 @@
 | `!HOTFIX`  | 급하게 치명적인 버그를 고쳐야 하는 경우              |
 
 ## 🧶 폴더 구조
+
+```
+.
+├── README.md
+├── constants
+│   ├── eventData.js
+│   └── festivalData.js
+├── event
+│   ├── event.html
+│   └── event.js
+├── festival
+│   ├── draggable.js
+│   ├── festivalInfo.html
+│   └── festivalInfo.js
+├── img
+│   ├── event
+│   ├── footer
+│   └── navBar
+├── index.css
+├── index.html
+└── layouts
+    ├── footer.html
+    ├── footer.js
+    └── navBar.html
+```
