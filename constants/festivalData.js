@@ -8,6 +8,22 @@ export const festivalData = [
     address: "충청남도 태안군 남면 마검포길 200",
   },
   {
+    title: "태안봄꽃정원",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZ4qC7pVZ__ILi8OmGzuccNIWZk00WYHkVHA&s",
+    space: "충남 태안군",
+    startTime: new Date("2025-04-03"),
+    endTime: new Date("2025-06-30"),
+    address: "충청남도 태안군 남면 마검포길 200",
+  },
+  {
+    title: "태안봄꽃정원",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZ4qC7pVZ__ILi8OmGzuccNIWZk00WYHkVHA&s",
+    space: "충남 태안군",
+    startTime: new Date("2025-04-03"),
+    endTime: new Date("2025-06-30"),
+    address: "충청남도 태안군 남면 마검포길 200",
+  },
+  {
     title: "부산국제매직페스티벌",
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAfS_lnpreFMjyQZ4DNUzOHAaIDGddBbiwqw&s",
     space: "부산 동구",

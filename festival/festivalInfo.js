@@ -1,4 +1,5 @@
 import { festivalData } from "../constants/festivalData.js";
+
 const calendar = document.getElementById("calendar");
 const display = document.getElementById("display");
 const prevBtn = document.getElementById("prev");
@@ -17,23 +18,23 @@ const renderFestivalList = (selected) => {
 
   if (events.length === 0) {
     festivalList.innerHTML =
-      '<p class="text-gray-600">해당 날짜에 열리는 행사가 없습니다.</p>';
+      '<p class="text-gray-600 px-8">해당 날짜에 열리는 행사가 없습니다.</p>';
     return;
   }
 
   festivalList.innerHTML = events
     .map(
       (event) => `
-          <div class="py-3 w-[30rem] h-[18rem] bg-white rounded-lg flex justify-center items-center flex-shrink-0">
-            <img src=${event.img} class="w-[7rem] h-[10rem] rounded-md"/>
-            <div class="flex flex-col gap-y-5 ml-[1rem]">
-              <h3 class="text-lg font-semibold">${event.title}</h3>
-              <p class="text-sm text-gray-700">장소: ${event.space}</p>
-              <p class="text-sm text-gray-700">기간: ${event.startTime.toLocaleDateString()} ~ ${event.endTime.toLocaleDateString()}</p>
-              <p class="text-sm text-gray-700">주소: ${event.address}</p>
-            </div>
+        <div class="snap-center flex-shrink-0 w-[30rem] h-[18rem] bg-white rounded-lg flex justify-center items-center px-6 shadow-lg">
+          <img src="${event.img}" class="w-[7rem] h-[10rem] rounded-md" />
+          <div class="flex flex-col gap-y-3 ml-4">
+            <h3 class="text-lg font-semibold">${event.title}</h3>
+            <p class="text-sm text-gray-700">장소: ${event.space}</p>
+            <p class="text-sm text-gray-700">기간: ${event.startTime.toLocaleDateString()} ~ ${event.endTime.toLocaleDateString()}</p>
+            <p class="text-sm text-gray-700">주소: ${event.address}</p>
           </div>
-        `
+        </div>
+      `
     )
     .join("");
 };
@@ -61,9 +62,9 @@ const renderCalendar = () => {
         : "bg-gray-100 text-gray-800 hover:bg-gray-200");
 
     box.innerHTML = `
-            <div>${dayNum}</div>
-            <div class="text-sm">${weekday}</div>
-          `;
+      <div>${dayNum}</div>
+      <div class="text-sm">${weekday}</div>
+    `;
 
     box.addEventListener("click", () => {
       selectedDate = date.toDateString();
@@ -88,3 +89,33 @@ nextBtn.addEventListener("click", () => {
 });
 
 renderCalendar();
+
+// festivalList 드래그 슬라이드
+let isDragging = false;
+let startX;
+let scrollLeft;
+
+festivalList.addEventListener("mousedown", (e) => {
+  isDragging = true;
+  festivalList.classList.add("cursor-grabbing");
+  startX = e.pageX - festivalList.offsetLeft;
+  scrollLeft = festivalList.scrollLeft;
+});
+
+festivalList.addEventListener("mouseleave", () => {
+  isDragging = false;
+  festivalList.classList.remove("cursor-grabbing");
+});
+
+festivalList.addEventListener("mouseup", () => {
+  isDragging = false;
+  festivalList.classList.remove("cursor-grabbing");
+});
+
+festivalList.addEventListener("mousemove", (e) => {
+  if (!isDragging) return;
+  e.preventDefault();
+  const x = e.pageX - festivalList.offsetLeft;
+  const walk = (x - startX) * 2.0; // 슬라이드 속도
+  festivalList.scrollLeft = scrollLeft - walk;
+});

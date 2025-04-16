@@ -18,3 +18,12 @@ html {
 .transition-max-height {
   transition: max-height 0.3s ease-in-out;
 }
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE & Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
