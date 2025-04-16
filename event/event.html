@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>대한민국 구석구석 클론코딩 사이트</title>
+    <link rel="stylesheet" href="/index.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <!-- NavBar -->
+    <script>
+      fetch("/layouts/navBar.html")
+        .then((res) => res.text())
+        .then((data) => {
+          document.getElementById("navBarContainer").innerHTML = data;
+        });
+    </script>
+
+    <div id="navBarContainer"></div>
+
+    <div class="flex w-full justify-center mb-[3rem] gap-[2rem]">
+      <div class="flex-col mt-[3.8rem]">
+        <div class="flex items-center w-[40rem]">
+          <img src="/img/event/funIcon.png" class="w-[3rem] h-[3rem]" />
+          <p class="font-semibold mt-5">이벤트</p>
+        </div>
+
+        <div class="flex ml-[1rem] justify-between">
+          <h1 class="text-3xl font-bold">#전체</h1>
+          <div class="flex gap-2">
+            <button
+              id="all"
+              class="rounded-sm text-sm border border-gray-800 w-[5rem] h-[1.8rem] p-1 flex justify-center items-center"
+            >
+              전체
+            </button>
+            <button
+              id="progress"
+              class="rounded-sm text-sm border border-gray-800 w-[5rem] h-[1.8rem] p-1 flex justify-center items-center"
+            >
+              진행중
+            </button>
+            <button
+              id="end"
+              class="rounded-sm text-sm border border-gray-800 w-[5rem] h-[1.8rem] p-1 flex justify-center items-center"
+            >
+              종료
+            </button>
+            <button
+              id="show"
+              class="rounded-sm text-sm border border-gray-800 w-[5rem] h-[1.8rem] p-1 flex justify-center items-center"
+            >
+              당첨자 발표
+            </button>
+          </div>
+        </div>
+        <div class="w-[40rem] h-[1px] bg-gray-400 my-4"></div>
+        <!-- 건수 표기 부분 -->
+        <div class="flex justify-between">
+          <h1 class="font-bold" id="count">총 000 건</h1>
+          <div class="flex gap-2">
+            <button class="font-bold">최신순</button>
+            <span>|</span>
+            <button class="font-bold">인기순</button>
+            <img src="/img/event/infoIcon.png" class="w-[1.3rem] h-[1.3rem]" />
+          </div>
+        </div>
+
+        <!-- 이벤트 리스트 표기 부분 -->
+        <div id="eventList" class="bg-pink-200 w-full h-[50rem]"></div>
+      </div>
+      <img
+        src="/img/event/eventImg.png"
+        class="w-[20rem] h-[15rem] mt-[10rem]"
+      />
+    </div>
+
+    <div id="footer-container"></div>
+
+    <script>
+      // footer.html을 불러와서 삽입
+      fetch("/layouts/footer.html")
+        .then((res) => res.text())
+        .then((data) => {
+          document.getElementById("footer-container").innerHTML = data;
+
+          // footer.js파일 불러오기
+          const script = document.createElement("script");
+          script.src = "/layouts/footer.js";
+          document.body.appendChild(script);
+        });
+    </script>
+    <script type="module" src="/event/event.js"></script>
+  </body>
+</html>
