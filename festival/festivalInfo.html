@@ -61,6 +61,20 @@
       ></div>
     </div>
 
+    <div id="footer-container"></div>
+    <script>
+      // footer.html을 불러와서 삽입
+      fetch("/layouts/footer.html")
+        .then((res) => res.text())
+        .then((data) => {
+          document.getElementById("footer-container").innerHTML = data;
+
+          // footer.js파일 불러오기
+          const script = document.createElement("script");
+          script.src = "/layouts/footer.js";
+          document.body.appendChild(script);
+        });
+    </script>
     <script type="module" src="festivalInfo.js"></script>
   </body>
 </html>
