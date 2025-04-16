@@ -1,5 +1,5 @@
 import { eventData } from "../constants/eventData.js";
-import { showData } from "../constants/eventData.js"; // show 전용 데이터 불러오기
+import { showData } from "../constants/eventData.js";
 
 const today = new Date();
 const eventList = document.getElementById("eventList");
@@ -7,6 +7,7 @@ const allBtn = document.getElementById("all");
 const progressBtn = document.getElementById("progress");
 const endBtn = document.getElementById("end");
 const showBtn = document.getElementById("show");
+const count = document.getElementById("count");
 
 let tag = "all";
 
@@ -33,7 +34,7 @@ const renderEventList = (today) => {
       return now > end;
     });
   } else if (tag === "show") {
-    events = showData; // 별도 데이터 사용
+    events = showData;
   }
 
   if (!events || events.length === 0) {
@@ -41,50 +42,83 @@ const renderEventList = (today) => {
     return;
   }
 
+  if (tag === "show") {
+    count.innerText = `총 ${showData.length} 건`;
+  } else {
+    count.innerText = `총 ${events.length} 건`;
+  }
+
   eventList.innerHTML = events
-    .map(
-      (event) => `
-        <div class="snap-center flex-shrink-0 justify-between w-[32rem] h-[18rem] bg-white rounded-lg flex justify-center px-6 shadow-lg pt-[2.5rem] select-none">
-          <img src="${
-            event.img
-          }" class="w-[9em] h-[13rem] rounded-md" draggable="false"/>
-          <div class="flex flex-col gap-y-3 ml-4 w-[18rem] h-[7rem]">
-            <h3 class="text-2xl font-semibold">${event.title}</h3>
-            <div class="flex mt-[1.3rem]">
-              <p class="text-sm text-gray-700 w-[8rem]">기간 <br/> 
-                ${event.startTime.toLocaleDateString()} ~ ${event.endTime.toLocaleDateString()}
-              </p>
-            </div>
-            <div class="flex gap-[2rem]">
-              <button class="rounded-md w-[6rem] bg-black text-white p-[0.5rem] text-sm">바로가기</button>
-              <button class="rounded-md w-[6rem] bg-white border border-black p-[0.5rem] text-sm">길찾기</button>
-            </div>
-          </div>
+    .map((event) => {
+      const now = stripTime(new Date());
+      const isBeforeStart = now < stripTime(event.startTime);
+      const isAfterEnd = now > stripTime(event.endTime);
+
+      // 상태에 따라 텍스트와 색상 지정
+      let statusText = "진행중";
+      let statusColor = "bg-red-500";
+
+      if (isBeforeStart) {
+        statusText = "예정";
+        statusColor = "bg-gray-400";
+      } else if (isAfterEnd) {
+        statusText = "종료";
+        statusColor = "bg-gray-600";
+      }
+
+      // show 태그일 경우엔 무조건 "당첨자 발표"
+      if (tag === "show") {
+        statusText = "당첨자 발표";
+        statusColor = "bg-black";
+      }
+
+      return `
+      <div class="w-[40rem] m-[1rem] bg-white rounded-lg shadow-md p-4 flex flex-col gap-2 select-none">
+        <div class="flex flex-col gap-1">
+          <span class="${statusColor} text-white text-xs font-semibold px-2 py-1 rounded w-fit">
+            ${statusText}
+          </span>
+          <h3 class="text-lg font-bold text-black">
+            ${event.title}
+          </h3>
+          <p class="text-sm text-gray-500">
+            ${event.startTime.toLocaleDateString()} ~ ${event.endTime.toLocaleDateString()}
+          </p>
         </div>
-      `
-    )
+        <img src="${
+          event.img
+        }" alt="이벤트 이미지" class="w-full rounded-md mt-2" draggable="false"/>
+      </div>
+    `;
+    })
     .join("");
 };
 
 renderEventList(today);
 
-// ✅ 버튼 이벤트
-allBtn.addEventListener("click", () => {
-  tag = "all";
-  renderEventList(today);
+const buttonMap = {
+  all: allBtn,
+  progress: progressBtn,
+  end: endBtn,
+  show: showBtn,
+};
+
+Object.keys(buttonMap).forEach((key) => {
+  buttonMap[key].addEventListener("click", () => {
+    const prev = tag;
+    tag = key;
+    btnClickHandler(prev, tag);
+    renderEventList(today);
+  });
 });
 
-progressBtn.addEventListener("click", () => {
-  tag = "progress";
-  renderEventList(today);
-});
-
-endBtn.addEventListener("click", () => {
-  tag = "end";
-  renderEventList(today);
-});
-
-showBtn.addEventListener("click", () => {
-  tag = "show";
-  renderEventList(today);
-});
+const btnClickHandler = (prev, current) => {
+  if (buttonMap[prev]) {
+    buttonMap[prev].classList.remove("text-white", "bg-black");
+    buttonMap[prev].classList.add("text-black", "bg-white");
+  }
+  if (buttonMap[current]) {
+    buttonMap[current].classList.remove("text-black", "bg-white");
+    buttonMap[current].classList.add("text-white", "bg-black");
+  }
+};
