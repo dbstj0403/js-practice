@@ -73,21 +73,11 @@
       .then((res) => res.text())
       .then((data) => {
         document.getElementById("footer-container").innerHTML = data;
-
-        //sns 아이콘 이벤트 리스너 설정
-        const snsIcons = document.querySelectorAll('.sns-icon');
-
-        snsIcons.forEach(icon => {
-            const colorSrc = icon.getAttribute('data-color-src');
-
-            icon.addEventListener('mouseover', function () {
-                this.dataset.originalSrc = this.src;
-                this.src = colorSrc;
-            });
-            icon.addEventListener('mouseout', function() {
-                this.src = this.dataset.originalSrc;
-            });
-        });
+      
+      //footer.js파일 불러오기
+        const script = document.createElement('script');
+        script.src = 'footer.js';
+        document.body.appendChild(script);
       });
     </script>
   </body>
