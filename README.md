@@ -13,7 +13,7 @@
         <sub>@dbstj0403</sub>
       </a>
 	  <br/>
-	  <sub>Navbar, 축제 행사 정보</sub>
+	  <sub>Navbar, 축제 행사 정보, 이벤트 페이지</sub>
     </td>
     <td align="center">
       <a href="https://github.com/jaehejun">
@@ -47,3 +47,5 @@
 | `Rename`   | 파일명 또는 폴더명 수정                              |
 | `Remove`   | 코드 삭제가 있을 때 (Clean, Eliminate 사용하기도)    |
 | `!HOTFIX`  | 급하게 치명적인 버그를 고쳐야 하는 경우              |
+
+## 🧶 폴더 구조
