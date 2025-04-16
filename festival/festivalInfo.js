@@ -11,10 +11,15 @@ let offset = 0;
 let selectedDate = new Date().toDateString();
 
 const renderFestivalList = (selected) => {
-  const selectedDay = new Date(selected);
-  const events = festivalData.filter(
-    (item) => selectedDay >= item.startTime && selectedDay <= item.endTime
-  );
+  const stripTime = (date) =>
+    new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+  const selectedDay = stripTime(new Date(selected));
+  const events = festivalData.filter((item) => {
+    const start = stripTime(item.startTime);
+    const end = stripTime(item.endTime);
+    return selectedDay >= start && selectedDay <= end;
+  });
 
   if (events.length === 0) {
     festivalList.innerHTML =
@@ -25,13 +30,21 @@ const renderFestivalList = (selected) => {
   festivalList.innerHTML = events
     .map(
       (event) => `
-        <div class="snap-center flex-shrink-0 w-[30rem] h-[18rem] bg-white rounded-lg flex justify-center items-center px-6 shadow-lg">
-          <img src="${event.img}" class="w-[7rem] h-[10rem] rounded-md" />
-          <div class="flex flex-col gap-y-3 ml-4">
-            <h3 class="text-lg font-semibold">${event.title}</h3>
-            <p class="text-sm text-gray-700">장소: ${event.space}</p>
-            <p class="text-sm text-gray-700">기간: ${event.startTime.toLocaleDateString()} ~ ${event.endTime.toLocaleDateString()}</p>
-            <p class="text-sm text-gray-700">주소: ${event.address}</p>
+        <div class="snap-center flex-shrink-0 justify-between w-[32rem] h-[18rem] bg-white rounded-lg flex justify-center px-6 shadow-lg pt-[2.5rem] select-none">
+          <img src="${
+            event.img
+          }" class="w-[9em] h-[13rem] rounded-md" draggable="false"/>
+          <div class="flex flex-col gap-y-3 ml-4 w-[18rem] h-[7rem]">
+            <h3 class="text-2xl font-semibold">${event.title}</h3>
+            <p class="text-md text-gray-700">${event.space}</p>
+            <div class="flex mt-[1.3rem]">
+              <p class="text-sm text-gray-700 w-[8rem]">기간 <br/> ${event.startTime.toLocaleDateString()} ~ ${event.endTime.toLocaleDateString()}</p>
+              <p class="text-sm text-gray-700">주소 <br/> ${event.address}</p>
+            </div>
+            <div class="flex gap-[2rem]">
+              <button class="rounded-md w-[6rem] bg-black text-white p-[0.5rem] text-sm">바로가기</button>
+              <button class="rounded-md w-[6rem] bg-white border border-black p-[0.5rem] text-sm">길찾기</button>
+            </div>
           </div>
         </div>
       `
@@ -44,6 +57,7 @@ const renderCalendar = () => {
   const today = new Date();
   const base = new Date();
   base.setDate(today.getDate() + offset);
+
   display.textContent = `${base.getFullYear()}.${base.getMonth() + 1}`;
 
   for (let i = 0; i < 14; i++) {
@@ -51,19 +65,26 @@ const renderCalendar = () => {
     date.setDate(base.getDate() + i);
 
     const dayNum = date.getDate();
-    const weekday = week[date.getDay()];
+    const dayIndex = date.getDay();
+    const weekday = week[dayIndex];
     const isSelected = date.toDateString() === selectedDate;
+
+    // 요일 색상 설정
+    let textColor = "text-gray-800";
+    if (dayIndex === 0) textColor = "text-red-500";
+    else if (dayIndex === 6) textColor = "text-blue-500";
 
     const box = document.createElement("div");
     box.className =
-      "flex flex-col items-center w-14 py-2 rounded-lg cursor-pointer transition " +
-      (isSelected
-        ? "bg-black text-white font-bold"
-        : "bg-gray-100 text-gray-800 hover:bg-gray-200");
+      "flex flex-col items-center w-14 py-2 cursor-pointer transition";
 
     box.innerHTML = `
-      <div>${dayNum}</div>
-      <div class="text-sm">${weekday}</div>
+      <div class="${
+        isSelected
+          ? `bg-black text-white rounded-full w-8 h-8 flex items-center justify-center font-bold`
+          : `rounded-full w-8 h-8 flex items-center justify-center font-semibold ${textColor}`
+      }">${dayNum}</div>
+      <div class="mt-1 text-sm ${textColor}">${weekday}</div>
     `;
 
     box.addEventListener("click", () => {
@@ -80,42 +101,18 @@ const renderCalendar = () => {
 
 prevBtn.addEventListener("click", () => {
   offset -= 14;
+  const base = new Date();
+  base.setDate(new Date().getDate() + offset);
+  selectedDate = base.toDateString();
   renderCalendar();
 });
 
 nextBtn.addEventListener("click", () => {
   offset += 14;
+  const base = new Date();
+  base.setDate(new Date().getDate() + offset);
+  selectedDate = base.toDateString();
   renderCalendar();
 });
 
 renderCalendar();
-
-// festivalList 드래그 슬라이드
-let isDragging = false;
-let startX;
-let scrollLeft;
-
-festivalList.addEventListener("mousedown", (e) => {
-  isDragging = true;
-  festivalList.classList.add("cursor-grabbing");
-  startX = e.pageX - festivalList.offsetLeft;
-  scrollLeft = festivalList.scrollLeft;
-});
-
-festivalList.addEventListener("mouseleave", () => {
-  isDragging = false;
-  festivalList.classList.remove("cursor-grabbing");
-});
-
-festivalList.addEventListener("mouseup", () => {
-  isDragging = false;
-  festivalList.classList.remove("cursor-grabbing");
-});
-
-festivalList.addEventListener("mousemove", (e) => {
-  if (!isDragging) return;
-  e.preventDefault();
-  const x = e.pageX - festivalList.offsetLeft;
-  const walk = (x - startX) * 2.0; // 슬라이드 속도
-  festivalList.scrollLeft = scrollLeft - walk;
-});

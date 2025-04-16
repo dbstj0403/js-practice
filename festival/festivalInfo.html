@@ -6,16 +6,6 @@
     <title>대한민국 구석구석 클론코딩 사이트</title>
     <link rel="stylesheet" href="/index.css" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      /* 스크롤바 제거용 (모든 브라우저 호환) */
-      #festivalList::-webkit-scrollbar {
-        display: none;
-      }
-      #festivalList {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-    </style>
   </head>
   <body>
     <!-- NavBar -->
@@ -30,7 +20,7 @@
 
     <!-- Festival Info -->
     <div class="w-full items-center">
-      <h1 class="text-2xl mb-[2rem] ml-[5rem] p-[3rem]">
+      <h1 class="text-2xl mb-[0.5rem] ml-[5rem] p-[2rem]">
         <strong>전국</strong> 축제∙행사 어디까지 가봤니?
       </h1>
 
@@ -57,24 +47,23 @@
       <!-- Festival Card  -->
       <div
         id="festivalList"
-        class="flex snap-x snap-mandatory overflow-x-auto scroll-smooth bg-gray-500 mt-6 w-full min-h-[25rem] px-8 py-4 gap-[2rem] items-center mb-[5rem]"
+        class="flex snap-x snap-mandatory overflow-x-auto scroll-smooth bg-gray-800 mt-6 w-full min-h-[25rem] px-8 py-4 gap-[2rem] items-center mb-[5rem]"
       ></div>
     </div>
 
     <div id="footer-container"></div>
     <script>
-      // footer.html을 불러와서 삽입
       fetch("/layouts/footer.html")
         .then((res) => res.text())
         .then((data) => {
           document.getElementById("footer-container").innerHTML = data;
 
-          // footer.js파일 불러오기
           const script = document.createElement("script");
           script.src = "/layouts/footer.js";
           document.body.appendChild(script);
         });
     </script>
     <script type="module" src="festivalInfo.js"></script>
+    <script src="/festival/draggable.js"></script>
   </body>
 </html>
