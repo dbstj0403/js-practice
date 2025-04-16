@@ -64,12 +64,12 @@
     </nav>
 
     <!-- Festival Information -->
-    <div class="w-full items-center p-[3rem]">
-      <h1 class="text-2xl mb-[2rem] ml-[5rem]">
+    <div class="w-full items-center">
+      <h1 class="text-2xl mb-[2rem] ml-[5rem] p-[3rem]">
         <strong>전국</strong> 축제∙행사 어디까지 가봤니?
       </h1>
       <div class="flex items-center justify-center mb-[1rem]">
-        <span id="monthDisplay" class="text-xl font-semibold"></span>
+        <span id="display" class="text-xl font-semibold"></span>
       </div>
 
       <div class="flex items-center justify-center gap-6 mb-4">
@@ -89,6 +89,10 @@
           →
         </button>
       </div>
+      <div
+        class="bg-gray-500 mt-[2rem] w-full min-h-[20rem] px-8 py-4 flex gap-[5rem] items-center justify-center pl-[5rem]"
+        id="festivalList"
+      ></div>
     </div>
   </body>
   <script src="festivalInfo.js"></script>
