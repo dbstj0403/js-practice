@@ -40,7 +40,7 @@ const renderFestivalList = (selected) => {
   // 만약 해당 날짜에 어떠한 행사도 진행되지 않을 경우 렌더링
   if (events.length === 0) {
     festivalList.innerHTML =
-      '<p class="text-gray-600 px-8">해당 날짜에 열리는 행사가 없습니다.</p>';
+      '<div class="text-white px-8">해당 날짜에 열리는 행사가 없습니다.</div>';
     visibleCardCount = 0;
     indicatorContainer.innerHTML = "";
     return;
