@@ -8,25 +8,30 @@ const festivalList = document.getElementById("festivalList");
 const week = ["일", "월", "화", "수", "목", "금", "토"];
 
 let offset = 0;
-let selectedDate = new Date().toDateString();
+let selectedDate = new Date().toDateString(); // 처음 화면에 들어올 때 선택된 날짜는 현재 날짜와 같음.
 
 const renderFestivalList = (selected) => {
+  // 날짜 비교시 일반 비교 연산자로 비교할 경우 시간까지 비교하게 되어 정확한 날짜 비교가 불가능하므로, 날짜만 뽑아서 비교하기 위한 함수.
   const stripTime = (date) =>
     new Date(date.getFullYear(), date.getMonth(), date.getDate());
 
   const selectedDay = stripTime(new Date(selected));
+
+  // 시작 날짜 ~ 끝나는 날짜 안에 선택된 날짜가 있으면 filter 통과
   const events = festivalData.filter((item) => {
     const start = stripTime(item.startTime);
     const end = stripTime(item.endTime);
     return selectedDay >= start && selectedDay <= end;
   });
 
+  // 만약 해당 날짜에 어떠한 행사도 진행되지 않을 경우 렌더링
   if (events.length === 0) {
     festivalList.innerHTML =
       '<p class="text-gray-600 px-8">해당 날짜에 열리는 행사가 없습니다.</p>';
     return;
   }
 
+  // 가운데 정렬을 맞추기 위한 더미 카드 내용 X, 이벤트 X
   festivalList.innerHTML = [
     // 맨 앞 더미 카드
     `<div class="w-[45rem] h-[18rem] flex-shrink-0 bg-transparent pointer-events-none select-none"></div>`,
@@ -85,18 +90,27 @@ const renderFestivalList = (selected) => {
 const renderCalendar = () => {
   calendar.innerHTML = "";
   const today = new Date();
+
+  // 처음 화면에 들어왔을 때 베이스 날짜는 현재 날짜와 동일함.
   const base = new Date();
+  // 달력 상단의 prev, next 버튼을 누를 경우 offset 전역 변수가 -14, +14 로 변하는데 이를 현재 날짜 기준으로 더하고 빼서 새로운 베이스 날짜로 지정함.
   base.setDate(today.getDate() + offset);
 
+  // getMonth() 함수의 경우 월을 0 ~ 11로 표현하므로 + 1
   display.textContent = `${base.getFullYear()}.${base.getMonth() + 1}`;
 
+  // 베이스 날짜로부터 14번 반복하며 연속되는 날짜를 출력함.
   for (let i = 0; i < 14; i++) {
     const date = new Date(base);
     date.setDate(base.getDate() + i);
 
     const dayNum = date.getDate();
     const dayIndex = date.getDay();
+
+    // 요일 배열에서 매치되는 요일 찾아 설정
     const weekday = week[dayIndex];
+
+    // 선택된 날짜 하이라이팅을 위한 변수
     const isSelected = date.toDateString() === selectedDate;
 
     // 요일 색상 설정
@@ -117,6 +131,7 @@ const renderCalendar = () => {
       <div class="mt-1 text-sm ${textColor}">${weekday}</div>
     `;
 
+    // 날짜가 선택될 때마다 선택된 날짜 업데이트 및 달력, 행사 정보 리스트를 다시 렌더링함.
     box.addEventListener("click", () => {
       selectedDate = date.toDateString();
       renderCalendar();
