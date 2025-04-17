@@ -51,6 +51,8 @@ const renderEventList = (today) => {
   // 해당 태그에 존재하는 이벤트 개수를 카운트하기 위한 분기문. 당첨자 발표의 경우 그냥 showData의 length를, 그외의 경우에는 필터링된 데이터의 length를 렌더링함.
   if (tag === "show") {
     count.innerText = `총 ${showData.length} 건`;
+  } else if (tag === "all") {
+    count.innerText = `총 ${showData.length + events.length} 건`;
   } else {
     count.innerText = `총 ${events.length} 건`;
   }
