@@ -19,7 +19,7 @@
     <div id="navBarContainer"></div>
 
     <!-- Calendar -->
-    <div class="w-full items-center">
+    <div class="w-full items-center relative">
       <h1 class="text-2xl mb-[0.5rem] ml-[5rem] p-[2rem]">
         <strong>전국</strong> 축제∙행사 어디까지 가봤니?
       </h1>
@@ -53,7 +53,14 @@
       <!-- Festival Card  -->
       <div
         id="festivalList"
-        class="flex snap-x snap-mandatory overflow-x-auto scroll-smooth bg-gray-800 mt-6 w-full min-h-[25rem] px-8 py-4 gap-[2rem] items-center mb-[5rem]"
+        style="background-color: rgb(51, 51, 51)"
+        class="flex snap-x snap-mandatory overflow-x-auto scroll-smooth mt-6 w-full min-h-[30rem] px-8 py-4 gap-[2rem] items-center mb-[5rem]"
+      ></div>
+
+      <!-- Indicator -->
+      <div
+        id="indicator"
+        class="absolute bottom-7 left-1/2 -translate-x-1/2 flex items-center gap-3 z-10"
       ></div>
     </div>
 
