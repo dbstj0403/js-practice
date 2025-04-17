@@ -27,29 +27,59 @@ const renderFestivalList = (selected) => {
     return;
   }
 
-  festivalList.innerHTML = events
-    .map(
-      (event) => `
-        <div class="snap-center flex-shrink-0 justify-between w-[32rem] h-[18rem] bg-white rounded-lg flex justify-center px-6 shadow-lg pt-[2.5rem] select-none">
-          <img src="${
-            event.img
-          }" class="w-[9em] h-[13rem] rounded-md" draggable="false"/>
-          <div class="flex flex-col gap-y-3 ml-4 w-[18rem] h-[7rem]">
-            <h3 class="text-2xl font-semibold">${event.title}</h3>
-            <p class="text-md text-gray-700">${event.space}</p>
-            <div class="flex mt-[1.3rem]">
-              <p class="text-sm text-gray-700 w-[8rem]">기간 <br/> ${event.startTime.toLocaleDateString()} ~ ${event.endTime.toLocaleDateString()}</p>
-              <p class="text-sm text-gray-700">주소 <br/> ${event.address}</p>
+  festivalList.innerHTML = [
+    // 맨 앞 더미 카드
+    `<div class="w-[45rem] h-[18rem] flex-shrink-0 bg-transparent pointer-events-none select-none"></div>`,
+
+    // 실제 카드들
+    ...events.map((event) => {
+      return `
+        <div class="snap-center flex-shrink-0 w-[40rem] h-[18rem] bg-white rounded-xl shadow-md flex items-center px-6 py-4 select-none">
+          <!-- 좌측 이미지 -->
+          <div class="w-[13rem] h-[14rem] flex items-center justify-center">
+            <img
+              src="${event.img}"
+              alt="${event.title} 이미지"
+              class="w-full h-full object-cover rounded-md"
+              draggable="false"
+            />
+          </div>
+  
+          <!-- 중앙 점선 -->
+          <div class="w-px h-[80%] border-r border-dashed border-gray-300 mx-6"></div>
+  
+          <!-- 우측 텍스트 -->
+          <div class="flex flex-col justify-between h-[15rem] w-full">
+            <div>
+              <h2 class="text-2xl font-bold text-gray-900 mb-1">${
+                event.title
+              }</h2>
+              <p class="text-sm text-gray-600 mb-4">${event.space}</p>
+  
+              <div class="flex text-sm text-gray-800 gap-12 mt-10">
+                <div>
+                  <p class="font-semibold text-gray-500 mb-1">기간</p>
+                  <p>${event.startTime.toLocaleDateString()} ~ ${event.endTime.toLocaleDateString()}</p>
+                </div>
+                <div>
+                  <p class="font-semibold text-gray-500 mb-1">장소</p>
+                  <p class="w-[16rem] leading-snug">${event.address}</p>
+                </div>
+              </div>
             </div>
-            <div class="flex gap-[2rem]">
-              <button class="rounded-md w-[6rem] bg-black text-white p-[0.5rem] text-sm">바로가기</button>
-              <button class="rounded-md w-[6rem] bg-white border border-black p-[0.5rem] text-sm">길찾기</button>
+  
+            <div class="flex gap-4 mt-3">
+              <button class="bg-black text-white px-5 py-1.5 rounded text-sm w-[8rem]">바로가기</button>
+              <button class="border border-black px-5 py-1.5 rounded text-sm w-[8rem]">길찾기</button>
             </div>
           </div>
         </div>
-      `
-    )
-    .join("");
+      `;
+    }),
+
+    // 맨 끝 더미 카드
+    `<div class="w-[45rem] h-[18rem] flex-shrink-0 bg-transparent pointer-events-none select-none"></div>`,
+  ].join("");
 };
 
 const renderCalendar = () => {
