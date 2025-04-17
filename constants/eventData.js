@@ -3,7 +3,7 @@ export const eventData = [
     img: "/img/event/event1.png",
     title: "오디 이벤트! 드라마&영화 속 명소 이야기 재생 이벤트",
     startTime: new Date("2025-04-10"),
-    endTime: new Date("2025-04-23"),
+    endTime: new Date("2025-04-26"),
   },
   {
     img: "/img/event/event2.png",
