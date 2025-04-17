@@ -26,14 +26,19 @@
 
     <!-- eventSlider.html을 불러와서 삽입 -->
     <div id="eventSlider-container"></div>
+
     <script>
     fetch("/eventSlider/eventSlider.html")
     .then((res) => res.text())
     .then((data) => {
       document.getElementById("eventSlider-container").innerHTML = data;
+
+      // eventSlider.js 불러오기
+      const script = document.createElement("script");
+      script.src = "/eventSlider/eventSlider.js";
+      document.body.appendChild(script);
     });
     </script>
-
 
     <!-- Footer -->
     <div id="footer-container"></div>
