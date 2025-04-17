@@ -19,10 +19,21 @@
     <div id="navBarContainer"></div>
 
     <!-- 본문 -->
-    <div class="pt-[6rem] p-8">
+    <!-- <div class="pt-[6rem] p-8">
       <h1 class="text-2xl font-bold">안녕하세요</h1>
       <p>본문 영역입니다. 드롭다운이 겹쳐서 표시되며 밀리지 않습니다.</p>
-    </div>
+    </div> -->
+
+    <!-- eventSlider.html을 불러와서 삽입 -->
+    <div id="eventSlider-container"></div>
+    <script>
+    fetch("/eventSlider/eventSlider.html")
+    .then((res) => res.text())
+    .then((data) => {
+      document.getElementById("eventSlider-container").innerHTML = data;
+    });
+    </script>
+
 
     <!-- Footer -->
     <div id="footer-container"></div>
