@@ -6,7 +6,6 @@ const currentPageEl = document.querySelector('#pagination .currentPage');
 const lastPageEl = document.querySelector('#pagination .lastPage');
 const progressbar = document.getElementById('progressbar');
 const progressFill = document.getElementById('progressFill');
-
 const swiperContainer = document.getElementById('swiperContainer');
 const sliderWidth = swiperContainer.offsetWidth;
 
