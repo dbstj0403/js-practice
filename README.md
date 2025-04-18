@@ -59,12 +59,17 @@
 ├── event
 │   ├── event.html
 │   └── event.js
+├── eventSlider
+│   ├── eventSlider.html
+│   └── eventSlider.js
 ├── festival
 │   ├── draggable.js
 │   ├── festivalInfo.html
 │   └── festivalInfo.js
 ├── img
 │   ├── event
+│   ├── eventSlider
+│   ├── festival
 │   ├── footer
 │   └── navBar
 ├── index.css
