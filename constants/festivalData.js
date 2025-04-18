@@ -4,7 +4,7 @@ export const festivalData = [
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZ4qC7pVZ__ILi8OmGzuccNIWZk00WYHkVHA&s",
     space: "충남 태안군",
     startTime: new Date("2025-04-03"),
-    endTime: new Date("2025-06-30"),
+    endTime: new Date("2025-04-24"),
     address: "충청남도 태안군 남면 마검포길 200",
   },
   {
@@ -12,7 +12,7 @@ export const festivalData = [
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAfS_lnpreFMjyQZ4DNUzOHAaIDGddBbiwqw&s",
     space: "부산 동구",
     startTime: new Date("2025-04-20"),
-    endTime: new Date("2025-04-23"),
+    endTime: new Date("2025-04-28"),
     address: "부산광역시 동구 자성로 133번길 16 (범일동)",
   },
   {
@@ -27,8 +27,8 @@ export const festivalData = [
     title: "용인 자작나무숲 봄꽃축제",
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp7feQtRp-PYicw5_s8p3twwqErRM83t8rxA&s",
     space: "경기 용인시",
-    startTime: new Date("2025-04-02"),
-    endTime: new Date("2025-06-09"),
+    startTime: new Date("2025-04-17"),
+    endTime: new Date("2025-04-30"),
     address: "경기도 용인시 처인구 백암면 석천리 723-2",
   },
   {
