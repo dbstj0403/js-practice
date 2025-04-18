@@ -8,7 +8,7 @@ const progressbar = document.getElementById('progressbar');
 const progressFill = document.getElementById('progressFill');
 
 const swiperContainer = document.getElementById('swiperContainer');
-const sliderWidth = swiperContainer.offsetWidth; //940
+const sliderWidth = swiperContainer.offsetWidth;
 
 const slideCount = slides.length;
 
